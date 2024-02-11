@@ -1,4 +1,4 @@
-export type authType = {
+export type errorType = {
   success: boolean;
   status_code: number;
   status_message: string;

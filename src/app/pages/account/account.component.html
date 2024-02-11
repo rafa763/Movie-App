@@ -1,0 +1,51 @@
+<div class="mt-5">
+  <fieldset disabled>
+    <legend>
+      Account Details <small><{{ details?.id }}></small>
+    </legend>
+    <div
+      class="alert alert-warning mx-auto mt-2"
+      style="width: 50vw"
+      role="alert"
+      *ngIf="error"
+    >
+      {{ error.status_message }}
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">Username</label>
+      <input
+        type="text"
+        id="disabledTextInput"
+        class="form-control"
+        placeholder="{{ details?.username }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">name</label>
+      <input
+        type="text"
+        id="disabledTextInput"
+        class="form-control"
+        placeholder="{{ details?.name }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">Country</label>
+      <input
+        type="text"
+        id="disabledTextInput"
+        class="form-control"
+        placeholder="{{ details?.iso_3166_1 }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">Language</label>
+      <input
+        type="text"
+        id="disabledTextInput"
+        class="form-control"
+        placeholder="{{ details?.iso_639_1 }}"
+      />
+    </div>
+  </fieldset>
+</div>

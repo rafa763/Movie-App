@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthType } from '../types/auth.type';
+import { authType } from '../types/auth.type';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class AuthenticateService {
   constructor(private http: HttpClient) {}
 
   authenticate(key: string) {
-    return this.http.get<AuthType>(
+    return this.http.get<authType>(
       'https://api.themoviedb.org/3/authentication',
       {
         headers: {
