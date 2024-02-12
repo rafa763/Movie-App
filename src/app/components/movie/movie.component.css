@@ -1,0 +1,26 @@
+/*  */
+
+.card {
+  width: 10rem;
+  /* background-color: aqua; */
+  height: 20rem;
+  /* border-color: transparent; */
+}
+
+svg {
+  margin-right: 5px;
+}
+
+.horizontal-layout {
+  display: flex;
+  align-items: center;
+}
+
+p {
+  flex-direction: row;
+}
+
+.no-decoration {
+  border: none;
+  background-color: transparent;
+}
