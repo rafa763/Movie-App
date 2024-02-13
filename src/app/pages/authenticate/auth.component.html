@@ -11,12 +11,12 @@
         style="width: 50vw"
         formControlName="jwt"
       ></textarea>
+      <span
+        class="help-block"
+        *ngIf="!AuthForm.get('jwt')?.valid && AuthForm.get('jwt')?.touched"
+        >Please enter a value!</span
+      >
     </div>
-    <span
-      class="help-block"
-      *ngIf="!AuthForm.get('jwt')?.valid && AuthForm.get('jwt')?.touched"
-      >Please enter a value!</span
-    >
     <div class="d-flex justify-content-center">
       <button
         type="submit"
