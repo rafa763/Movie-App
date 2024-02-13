@@ -1,15 +1,15 @@
 <div class="mt-5">
   <fieldset disabled>
     <legend>
-      Account Details <small><{{ details?.id }}></small>
+      Account Details <small><{{ accountDetails.id }}></small>
     </legend>
     <div
       class="alert alert-warning mx-auto mt-2"
       style="width: 50vw"
       role="alert"
-      *ngIf="error"
+      *ngIf="!error.error.success"
     >
-      {{ error.status_message }}
+      {{ error.error.status_message }}
     </div>
     <div class="mb-3">
       <label for="disabledTextInput" class="form-label">Username</label>
@@ -17,7 +17,7 @@
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ details?.username }}"
+        placeholder="{{ accountDetails.username }}"
       />
     </div>
     <div class="mb-3">
@@ -26,7 +26,7 @@
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ details?.name }}"
+        placeholder="{{ accountDetails.name }}"
       />
     </div>
     <div class="mb-3">
@@ -35,7 +35,7 @@
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ details?.iso_3166_1 }}"
+        placeholder="{{ accountDetails.iso_3166_1 }}"
       />
     </div>
     <div class="mb-3">
@@ -44,7 +44,7 @@
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ details?.iso_639_1 }}"
+        placeholder="{{ accountDetails.iso_639_1 }}"
       />
     </div>
   </fieldset>
