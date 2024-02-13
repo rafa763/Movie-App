@@ -1,0 +1,6 @@
+<h3>Current Watchlist</h3>
+<div class="row">
+  <div class="col-md-4" *ngFor="let fav of watchlist">
+    <app-movie [moviesx]="fav" [type]="'watchlist'"></app-movie>
+  </div>
+</div>
