@@ -14,10 +14,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" routerLinkActive="active" routerLink="/">Home</a>
         <a class="nav-link" routerLinkActive="active" routerLink="/account"
           >My Account</a
         >
+        <a class="nav-link" (click)="logout()" routerLink="/">Logout</a>
       </div>
     </div>
   </div>

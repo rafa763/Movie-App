@@ -5,4 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+
+    window.location.href = '/';
+  }
+}
