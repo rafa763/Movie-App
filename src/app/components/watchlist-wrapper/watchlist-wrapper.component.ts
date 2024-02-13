@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { showType } from '../../types/trending.type';
 
@@ -9,4 +9,9 @@ import { showType } from '../../types/trending.type';
 })
 export class WatchlistWrapperComponent {
   @Input() watchlist: showType[] = [];
+  @Output() watchlistUpdated = new EventEmitter<void>();
+
+  onWatchlistUpdated() {
+    this.watchlistUpdated.emit();
+  }
 }

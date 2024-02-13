@@ -1,7 +1,9 @@
-<h3>Latest trending movies</h3>
-<div class="row">
-  <div class="col-md-4" *ngFor="let movie of movies">
-    <app-movie [moviesx]="movie"></app-movie>
-  </div>
-  <!-- <app-movie [moviesx]="movies[0]"></app-movie> -->
-</div>
+<app-movie-wrapper
+  [movies]="movies"
+  (watchlistUpdated)="updateWatchlist()"
+  (fetchMoreMovies)="doFetchMoreMovies($event)"
+></app-movie-wrapper>
+<app-watchlist-wrapper
+  [watchlist]="watchlist"
+  (watchlistUpdated)="updateWatchlist()"
+></app-watchlist-wrapper>

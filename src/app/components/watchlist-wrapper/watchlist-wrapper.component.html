@@ -1,6 +1,13 @@
-<h3>Current Watchlist</h3>
+<h3 *ngIf="watchlist.length > 0">Current Watchlist</h3>
+<!-- <div class="alert alert-danger mx-auto mt-2" style="width: 50vw" role="alert">
+  Error while fetching
+</div> -->
 <div class="row">
   <div class="col-md-4" *ngFor="let fav of watchlist">
-    <app-movie [moviesx]="fav" [type]="'watchlist'"></app-movie>
+    <app-movie
+      [movies]="fav"
+      [type]="'watchlist'"
+      (watchlistUpdated)="onWatchlistUpdated()"
+    ></app-movie>
   </div>
 </div>

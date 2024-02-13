@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges } from '@angular/core';
-
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { WatchlistService } from '../../http/watchlist.service';
 import { showType } from '../../types/trending.type';
 
 @Component({
@@ -7,16 +7,24 @@ import { showType } from '../../types/trending.type';
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css',
 })
-export class MovieComponent implements OnChanges {
-  @Input() moviesx!: showType;
+export class MovieComponent implements OnInit {
+  @Input() movies!: showType;
+  @Input() type!: string;
 
-  movieName: string = 'The Matrix';
-  movieYear: number = 1999;
-  movieRating: string = '4.6';
-  movieDescription: string =
-    'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.';
+  @Output() watchlistUpdated = new EventEmitter<void>();
 
-  ngOnChanges() {
-    console.log('ddd', this.moviesx);
+  constructor(private watchlistService: WatchlistService) {}
+
+  ngOnInit() {}
+
+  addToWatchlist(id: number) {
+    this.watchlistService.addToWatchlist(id);
+    this.watchlistUpdated.emit();
+  }
+
+  removeFromWatchlist(id: number) {
+    console.log('remove', id);
+    this.watchlistService.removeFromWatchlist(id);
+    this.watchlistUpdated.emit();
   }
 }

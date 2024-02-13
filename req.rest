@@ -1,0 +1,23 @@
+POST https://api.themoviedb.org/3/account/20971682/watchlist
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDYzNDU1NTgwYjAzNWIzNjFkMGZkZDRmMDNhYmQ0OSIsInN1YiI6IjY1YzIzYTI0ZmM1ZjA2MDBlOGM1MGE5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dEIjbTnfcMrbQ9OLj0VnC5zGhjdFzk1sAndtMvI69sE
+Content-Type: application/json
+
+{
+  "media_type": "movie",
+  "media_id": 895959,
+  "watchlist": false
+}
+
+###
+
+GET https://api.themoviedb.org/3/account/20971682/watchlist/movies?language=en-US&page=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDYzNDU1NTgwYjAzNWIzNjFkMGZkZDRmMDNhYmQ0OSIsInN1YiI6IjY1YzIzYTI0ZmM1ZjA2MDBlOGM1MGE5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dEIjbTnfcMrbQ9OLj0VnC5zGhjdFzk1sAndtMvI69sE
+
+###
+
+GET https://api.themoviedb.org/3/account/account_id
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDYzNDU1NTgwYjAzNWIzNjFkMGZkZDRmMDNhYmQ0OSIsInN1YiI6IjY1YzIzYTI0ZmM1ZjA2MDBlOGM1MGE5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dEIjbTnfcMrbQ9OLj0VnC5zGhjdFzk1sAndtMvI69sE
+
+###
+GET https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDYzNDU1NTgwYjAzNWIzNjFkMGZkZDRmMDNhYmQ0OSIsInN1YiI6IjY1YzIzYTI0ZmM1ZjA2MDBlOGM1MGE5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dEIjbTnfcMrbQ9OLj0VnC5zGhjdFzk1sAndtMvI69sE

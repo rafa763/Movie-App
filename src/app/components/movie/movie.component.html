@@ -1,19 +1,18 @@
-<!-- Button trigger modal -->
-<!-- Button trigger modal -->
 <button
   class="no-decoration"
   type="button"
   data-bs-toggle="modal"
-  [attr.data-bs-target]="'#exampleModal' + moviesx.id"
+  [attr.data-bs-target]="'#exampleModal' + movies.id"
+  [disabled]="type === 'watchlist'"
 >
-  <div class="card">
+  <div class="card mx-3 my-3">
     <img
       class="card-img-top rounded-2"
-      src="https://image.tmdb.org/t/p/w185{{ moviesx.posterPath }}"
+      src="https://image.tmdb.org/t/p/w185{{ movies.posterPath }}"
       alt="Card image cap"
     />
     <div class="card-body">
-      <h5 class="card-title">{{ moviesx.name }}</h5>
+      <h5 class="card-title">{{ movies.name }}</h5>
       <p class="d-flex card-text align-items-center">
         <span class="horizontal-layout"
           ><svg
@@ -29,41 +28,108 @@
             /></svg
         ></span>
         <span class="mb-1">
-          {{ moviesx.voteAverage }} | {{ moviesx.airDate }}
+          {{ movies.voteAverage }} | {{ movies.airDate }}
         </span>
       </p>
+      <button
+        *ngIf="type === 'watchlist'"
+        type="button"
+        class="btn btn-danger"
+        (click)="removeFromWatchlist(movies.id)"
+      >
+        Remove from Watchlist
+      </button>
     </div>
   </div>
 </button>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal{{ moviesx.id }}"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModal{{ moviesx.id }}">
-          {{ moviesx.name }}
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">{{ moviesx.overview }}</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Add to Favourites</button>
+
+<div *ngIf="type === 'movie'; else watchlistBlock">
+  <div
+    class="modal fade"
+    id="exampleModal{{ movies.id }}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal{{ movies.id }}">
+            {{ movies.name }}
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">{{ movies.overview }}</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="addToWatchlist(movies.id)"
+          >
+            Add to Watchlist
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<!--  -->
+<ng-template #watchlistBlock>
+  <div
+    class="modal fade"
+    id="exampleModal{{ movies.id }}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal{{ movies.id }}">
+            {{ movies.name }}
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">{{ movies.overview }}</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeFromWatchlist(movies.id)"
+          >
+            Remove from Watchlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!--  -->

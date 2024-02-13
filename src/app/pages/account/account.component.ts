@@ -26,8 +26,8 @@ export class AccountComponent implements OnInit {
         }
       },
       (error: errorType) => {
-        console.log('error', error.error);
-        if (error.error) {
+        console.log('error', error);
+        if (error) {
           this.error = error;
         }
       }

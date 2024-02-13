@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TrendingService } from '../../http/trending.service';
+import { WatchlistService } from '../../http/watchlist.service';
+import { mapMovies } from '../../maps/movies.map';
 import { showType } from '../../types/trending.type';
+import { errorType } from '../../types/error.type';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +13,58 @@ import { showType } from '../../types/trending.type';
 })
 export class HomeComponent implements OnInit {
   movies: showType[] = [];
-  constructor(private trendingService: TrendingService) {}
+  watchlist: showType[] = [];
+
+  constructor(
+    private trendingService: TrendingService,
+    private watchlistService: WatchlistService
+  ) {}
 
   ngOnInit() {
-    this.trendingService.getTrending().subscribe({
-      next: (response: showType[]) => {
-        this.movies = response;
-        console.log(this.movies[0]);
+    this.getTrending();
+    this.getWatchlist();
+  }
+
+  getWatchlist() {
+    this.watchlistService.getWatchlist().subscribe(
+      (res: any) => {
+        if (res) {
+          this.watchlist = mapMovies(res.results);
+          // console.log('WL', this.watchlist);
+          return;
+        }
       },
-      error: (error) => {
-        console.log('error', error);
+      (error: errorType) => {
+        console.log('error', error.error);
+      }
+    );
+  }
+
+  getTrending(id?: number) {
+    this.trendingService.getTrending(id).subscribe(
+      (res: any) => {
+        if (res) {
+          let fetched: showType[] = mapMovies(res.results);
+          this.movies = [...this.movies, ...fetched];
+          // console.log('MW', this.movies);
+          return;
+        }
+
+        this.movies = res.results;
+        console.log(res);
       },
-    });
+      (error: errorType) => {
+        console.log('error', error.error);
+      }
+    );
+  }
+
+  doFetchMoreMovies(idx: number) {
+    this.getTrending(idx);
+  }
+
+  updateWatchlist() {
+    console.log('updatezzz');
+    this.getWatchlist();
   }
 }

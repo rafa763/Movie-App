@@ -1,10 +1,14 @@
 <h3>Latest trending movies</h3>
+<!-- <div class="alert alert-danger mx-auto mt-2" style="width: 50vw" role="alert">
+  Error while fetching
+</div> -->
 <div class="row">
   <div class="col-md-4" *ngFor="let movie of movies">
     <app-movie
-      [moviesx]="movie"
+      [movies]="movie"
       [type]="'movie'"
       (watchlistUpdated)="onWatchlistUpdated()"
     ></app-movie>
   </div>
+  <button class="btn btn-primary my-5" (click)="fetchMore()">Load More</button>
 </div>
