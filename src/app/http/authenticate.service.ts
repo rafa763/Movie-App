@@ -8,13 +8,13 @@ import { authType } from '../types/auth.type';
 export class AuthenticateService {
   constructor(private http: HttpClient) {}
 
-  authenticate(key: string) {
+  authenticate(token: string) {
     return this.http.get<authType>(
       'https://api.themoviedb.org/3/authentication',
       {
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${key}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
