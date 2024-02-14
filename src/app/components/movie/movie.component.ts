@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { WatchlistService } from '../../http/watchlist.service';
-import { showType } from '../../types/trending.type';
+import { Movie } from '../../types/movie.type';
 
 @Component({
   selector: 'app-movie',
@@ -8,7 +8,7 @@ import { showType } from '../../types/trending.type';
   styleUrl: './movie.component.css',
 })
 export class MovieComponent {
-  @Input() movies!: showType;
+  @Input() movies!: Movie;
   @Input() type!: string;
 
   @Output() watchlistUpdated = new EventEmitter<void>();

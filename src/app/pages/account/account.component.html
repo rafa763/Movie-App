@@ -7,9 +7,9 @@
       class="alert alert-warning mx-auto mt-2"
       style="width: 50vw"
       role="alert"
-      *ngIf="!error.error.success"
+      *ngIf="message"
     >
-      {{ error.error.status_message }}
+      {{ message.status_message }}
     </div>
     <div class="mb-3">
       <label for="disabledTextInput" class="form-label">Username</label>

@@ -8,11 +8,11 @@
   <div class="card mx-3 my-3">
     <img
       class="card-img-top rounded-2"
-      src="https://image.tmdb.org/t/p/w185{{ movies.posterPath }}"
+      src="https://image.tmdb.org/t/p/w185{{ movies.poster_path }}"
       alt="Card image cap"
     />
     <div class="card-body">
-      <h5 class="card-title">{{ movies.name }}</h5>
+      <h5 class="card-title">{{ movies.title }}</h5>
       <p class="d-flex card-text align-items-center">
         <span class="horizontal-layout"
           ><svg
@@ -28,7 +28,8 @@
             /></svg
         ></span>
         <span class="mb-1">
-          {{ movies.voteAverage }} | {{ movies.airDate }}
+          {{ movies.vote_average.toFixed(1) }} |
+          {{ movies.release_date | date : "yyyy" }}
         </span>
       </p>
       <button
@@ -57,7 +58,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModal{{ movies.id }}">
-            {{ movies.name }}
+            {{ movies.title }}
           </h5>
           <button
             type="button"
@@ -101,7 +102,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModal{{ movies.id }}">
-            {{ movies.name }}
+            {{ movies.title }}
           </h5>
           <button
             type="button"

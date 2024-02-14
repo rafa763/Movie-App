@@ -4,9 +4,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticateService } from '../../http/authenticate.service';
 import { AccountService } from '../../http/account.service';
 import { Router } from '@angular/router';
-import { authType } from '../../types/auth.type';
-import { errorType } from '../../types/error.type';
-import { accountType } from '../../types/account.type';
+import { AuthResponseType } from '../../types/auth.type';
+import { AccountResponseType } from '../../types/account.type';
+import { ErrorType } from '../../types/error.type';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +15,7 @@ import { accountType } from '../../types/account.type';
 })
 export class AuthComponent implements OnInit {
   AuthForm!: FormGroup;
-  message!: string;
+  message!: ErrorType;
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -32,19 +32,20 @@ export class AuthComponent implements OnInit {
   onSubmit() {
     const jwt = this.AuthForm.value.jwt;
     this.authenticateService.authenticate(jwt).subscribe(
-      (res: authType) => {
-        if (res.success && res) {
-          localStorage.setItem('token', jwt);
-          this.accountService.getAccount().subscribe((res: accountType) => {
+      (res: AuthResponseType) => {
+        localStorage.setItem('token', jwt);
+        this.accountService
+          .getAccount()
+          .subscribe((res: AccountResponseType) => {
             // console.log('authRes', res.id);
             localStorage.setItem('id', res.id.toString());
             this.router.navigate(['/']);
           });
-        }
       },
-      (error: errorType) => {
-        // console.log('error', error.error.status_message);
-        this.message = error.error.status_message;
+      (err: AccountResponseType) => {
+        if (err.error) {
+          this.message = err.error;
+        }
       }
     );
   }

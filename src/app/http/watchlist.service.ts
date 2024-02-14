@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { WatchlistResponseType } from '../types/watchlist.type';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class WatchlistService {
   constructor(private http: HttpClient) {}
 
   getWatchlist() {
-    return this.http.get(
+    return this.http.get<WatchlistResponseType>(
       `https://api.themoviedb.org/3/account/${this.accountId}/watchlist/movies`,
       {
         headers: {

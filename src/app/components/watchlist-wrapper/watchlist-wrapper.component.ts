@@ -1,8 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { WatchlistService } from '../../http/watchlist.service';
-import { showType } from '../../types/trending.type';
-import { mapMovies } from '../../maps/movies.map';
+import { Movie } from '../../types/movie.type';
+import { WatchlistResponseType } from '../../types/watchlist.type';
+import { ErrorType } from '../../types/error.type';
 
 @Component({
   selector: 'app-watchlist-wrapper',
@@ -10,7 +11,8 @@ import { mapMovies } from '../../maps/movies.map';
   styleUrl: './watchlist-wrapper.component.css',
 })
 export class WatchlistWrapperComponent implements OnInit {
-  watchlist: showType[] = [];
+  watchlist: Movie[] = [];
+  message!: ErrorType;
   @Output() watchlistUpdated = new EventEmitter<void>();
 
   constructor(private watchlistService: WatchlistService) {}
@@ -24,13 +26,15 @@ export class WatchlistWrapperComponent implements OnInit {
   }
 
   getWatchlist() {
-    this.watchlistService.getWatchlist().subscribe((res: any) => {
-      if (res.error) {
-        console.log('res', res.error);
-        // console.log('WL', this.watchlist);
-        return;
+    this.watchlistService.getWatchlist().subscribe(
+      (res: WatchlistResponseType) => {
+        this.watchlist = res.results;
+      },
+      (err: WatchlistResponseType) => {
+        if (err.error) {
+          this.message = err.error;
+        }
       }
-      this.watchlist = mapMovies(res.results);
-    });
+    );
   }
 }

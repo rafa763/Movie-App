@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 
 import { WatchlistWrapperComponent } from '../../components/watchlist-wrapper/watchlist-wrapper.component';
-import { showType } from '../../types/trending.type';
+import { Movie } from '../../types/movie.type';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +9,8 @@ import { showType } from '../../types/trending.type';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  movies: showType[] = [];
-  watchlist: showType[] = [];
+  movies: Movie[] = [];
+  watchlist: Movie[] = [];
 
   @ViewChild(WatchlistWrapperComponent)
   watchlistWrapper!: WatchlistWrapperComponent;
