@@ -6,6 +6,12 @@ export interface errorType {
   };
 }
 
+export interface ET {
+  success: boolean;
+  status_code: number;
+  status_message: string;
+}
+
 export const defaultErrorType = {
   error: {
     success: true,
