@@ -1,7 +1,7 @@
 <div class="mt-5">
   <fieldset disabled>
     <legend>
-      Account Details <small><{{ accountDetails.id }}></small>
+      Account Details <small><{{ accountDetails?.id }}></small>
     </legend>
     <div
       class="alert alert-warning mx-auto mt-2"
@@ -9,43 +9,48 @@
       role="alert"
       *ngIf="message"
     >
-      {{ message.status_message }}
+      {{ message }}
     </div>
     <div class="mb-3">
-      <label for="disabledTextInput" class="form-label">Username</label>
+      <label for="disabledTextInput" class="form-label">email</label>
       <input
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ accountDetails.username }}"
+        placeholder="{{ accountDetails?.email }}"
       />
     </div>
     <div class="mb-3">
-      <label for="disabledTextInput" class="form-label">name</label>
+      <label for="disabledTextInput" class="form-label">Date of birth</label>
       <input
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ accountDetails.name }}"
+        placeholder="{{ accountDetails?.dob }}"
       />
     </div>
     <div class="mb-3">
-      <label for="disabledTextInput" class="form-label">Country</label>
+      <label for="disabledTextInput" class="form-label">Joined at</label>
       <input
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ accountDetails.iso_3166_1 }}"
+        placeholder="{{ accountDetails?.created_at }}"
       />
     </div>
     <div class="mb-3">
-      <label for="disabledTextInput" class="form-label">Language</label>
+      <label for="disabledTextInput" class="form-label">Role</label>
       <input
         type="text"
         id="disabledTextInput"
         class="form-control"
-        placeholder="{{ accountDetails.iso_639_1 }}"
+        placeholder="{{ accountDetails?.role }}"
       />
     </div>
   </fieldset>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-danger mt-3" (click)="deleteAccount()">
+      Delete Account
+    </button>
+  </div>
 </div>

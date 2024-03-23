@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
         console.log(res);
       },
       (err) => {
-        this.message = err.error;
-        console.log(err);
+        this.message = err.message;
+        // console.log(err);
       }
     );
 

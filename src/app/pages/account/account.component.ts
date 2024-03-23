@@ -12,7 +12,7 @@ import { ErrorType } from '../../types/error.type';
 })
 export class AccountComponent implements OnInit {
   accountDetails!: AccountResponseType;
-  message!: ErrorType;
+  message!: string;
 
   constructor(private accountService: AccountService) {}
 
@@ -21,9 +21,25 @@ export class AccountComponent implements OnInit {
       (res: AccountResponseType) => {
         this.accountDetails = res;
       },
-      (err: AccountResponseType) => {
-        if (err.error) {
-          this.message = err.error;
+      (err) => {
+        if (err) {
+          this.message = err.message;
+        }
+      }
+    );
+  }
+
+  deleteAccount() {
+    this.accountService.deleteAccount().subscribe(
+      (res) => {
+        console.log('res', res);
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        window.location.href = '/login';
+      },
+      (err) => {
+        if (err) {
+          this.message = err.message;
         }
       }
     );
