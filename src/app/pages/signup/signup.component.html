@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <form
+      [formGroup]="SignupForm"
+      (ngSubmit)="onSubmit()"
+      class="mt-5 d-flex justify-content-center"
+    >
+      <div class="col-lg-5">
+        <div class="form-group mb-1">
+          <label for="email">Email address</label>
+
+          <input
+            type="email"
+            class="form-control mt-2"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              SignupForm.get('email')?.invalid &&
+              SignupForm.get('email')?.touched
+            "
+            class="text-danger"
+          >
+            Please enter a valid email.
+          </div>
+          <small
+            *ngIf="!SignupForm.get('email')?.touched"
+            id="emailHelp"
+            class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            class="form-control my-2"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+
+          <input
+            type="password"
+            class="form-control my-2"
+            id="confirmPassword"
+            placeholder="Confirm password"
+            formControlName="confirmPassword"
+            autocomplete="off"
+          />
+          <div
+            *ngIf="
+              SignupForm.hasError('passwordMismatch') &&
+              SignupForm.get('confirmPassword')?.touched
+            "
+            class="text-danger"
+          >
+            Passwords do not match.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of birth</label>
+
+          <input
+            type="date"
+            class="form-control my-2"
+            id="dob"
+            placeholder="Date of birth"
+            formControlName="dob"
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12 mt-3 d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-primary px-4"
+                [disabled]="!SignupForm.valid"
+              >
+                Sign Up
+              </button>
+            </div>
+            <!-- <div class="col-12 mt-3 d-flex justify-content-center">
+              <ngx-recaptcha2
+                #captchaElem
+                [siteKey]="siteKey"
+                formControlName="recaptcha"
+              >
+              </ngx-recaptcha2>
+            </div> -->
+            <div class="col-12 d-flex justify-content-center">
+              <small id="emailHelp" class="form-text text-muted"
+                >Already have an account?
+                <a routerLink="/login">login</a></small
+              >
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <div
+                class="alert alert-warning mx-auto mt-2"
+                style="width: 50vw"
+                role="alert"
+                *ngIf="message"
+              >
+                {{ message }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

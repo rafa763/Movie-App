@@ -13,9 +13,5 @@ import { Movie } from './movie.type';
 // _____________________________________________________________________________
 
 export interface TrendingResponseType {
-  page: number;
   results: Movie[];
-  total_pages: number;
-  total_results: number;
-  error?: ErrorType;
 }

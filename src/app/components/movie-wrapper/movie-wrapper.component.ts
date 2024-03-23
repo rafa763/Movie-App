@@ -12,6 +12,7 @@ import { ErrorType } from '../../types/error.type';
 })
 export class MovieWrapperComponent implements OnInit {
   idx = 1;
+  pageSize: number = 20;
   movies: Movie[] = [];
   message!: ErrorType;
   @Output() watchlistUpdated = new EventEmitter<void>();
@@ -22,14 +23,17 @@ export class MovieWrapperComponent implements OnInit {
     this.getTrending();
   }
 
-  getTrending(id?: number) {
-    this.trendingService.getTrending(id).subscribe(
-      (res: TrendingResponseType) => {
-        let fetched: Movie[] = res.results;
-        this.movies = [...this.movies, ...fetched];
-        // console.log('MW', this.movies);
+  // get the pagesize variable from the input field in the html
+
+  getTrending(id?: number, pageSize: number = this.pageSize) {
+    console.log('from ts', pageSize);
+
+    this.trendingService.getTrending(id, pageSize).subscribe(
+      (res: any) => {
+        let fetched: Movie[] = res;
+        this.movies = [...fetched];
       },
-      (err: TrendingResponseType) => {
+      (err) => {
         if (err.error) {
           this.message = err.error;
         }

@@ -14,7 +14,7 @@ export class WatchlistService {
 
   getWatchlist() {
     return this.http.get<WatchlistResponseType>(
-      `https://api.themoviedb.org/3/account/${this.accountId}/watchlist/movies`,
+      `https://api.themoviedb.org/3/account/2323211111111/watchlist/movies`,
       {
         headers: {
           accept: 'application/json',

@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <form
+      [formGroup]="LoginForm"
+      (ngSubmit)="onSubmit()"
+      class="mt-5 d-flex justify-content-center"
+    >
+      <div class="col-lg-5">
+        <div class="form-group mb-1">
+          <label for="email">Email address</label>
+
+          <input
+            type="email"
+            class="form-control mt-2 mb-1"
+            id="email"
+            placeholder="Enter email"
+            formControlName="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            class="form-control my-2"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12 mt-3 d-flex justify-content-center">
+              <button
+                [disabled]="!LoginForm.valid"
+                type="submit"
+                class="btn btn-primary px-4"
+              >
+                Login
+              </button>
+            </div>
+            <!-- <div class="col-12 mt-3 d-flex justify-content-center">
+              <ngx-recaptcha2
+                #captchaElem
+                [siteKey]="siteKey"
+                formControlName="recaptcha"
+              >
+              </ngx-recaptcha2>
+            </div> -->
+            <div class="col-12 d-flex justify-content-center">
+              <small id="emailHelp" class="form-text text-muted"
+                >Don't have an account?
+                <a routerLink="/signup">Sign Up</a></small
+              >
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <div
+                class="alert alert-warning mx-auto mt-2"
+                style="width: 50vw"
+                role="alert"
+                *ngIf="message"
+              >
+                {{ message }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

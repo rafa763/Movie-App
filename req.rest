@@ -21,3 +21,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDYzNDU1NTgwYjAzNWIzNjFkM
 ###
 GET https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=3
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDYzNDU1NTgwYjAzNWIzNjFkMGZkZDRmMDNhYmQ0OSIsInN1YiI6IjY1YzIzYTI0ZmM1ZjA2MDBlOGM1MGE5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dEIjbTnfcMrbQ9OLj0VnC5zGhjdFzk1sAndtMvI69sE
+
+###
+
+GET http://localhost:8080/movies
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:8080/movies/65d7075b03c1632346054060
+
+###
+
+POST http://localhost:8080/movies
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "releaseDate": "1999-03-30",
+  "description": "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+  "imageLink": "https://www.example.com/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+  "rating": 8.1
+}
