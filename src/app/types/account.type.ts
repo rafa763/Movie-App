@@ -1,4 +1,4 @@
-import { ErrorType } from './error.type';
+// import { ErrorType } from './error.type';
 
 // export type accountType = {
 //   id: number;
@@ -9,19 +9,10 @@ import { ErrorType } from './error.type';
 // };
 
 export type AccountResponseType = {
-  avatar: {
-    gravatar: {
-      hash: string;
-    };
-    tmdb: {
-      avatar_path: null | string;
-    };
-  };
-  id: number;
-  iso_639_1: string;
-  iso_3166_1: string;
-  name: string;
-  include_adult: boolean;
-  username: string;
-  error?: ErrorType;
+  active: boolean;
+  created_at: string;
+  dob: string;
+  email: string;
+  id: string;
+  role: string;
 };

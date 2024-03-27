@@ -39,7 +39,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           }),
           catchError((err) => {
             // if refresh token is expired, redirect to login page
-            router.navigate(['/login']);
+            router.navigate(['/']);
             return throwError(() => err);
           })
         );

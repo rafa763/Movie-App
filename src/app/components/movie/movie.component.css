@@ -24,3 +24,7 @@ p {
   border: none;
   background-color: transparent;
 }
+
+.hoverable:hover {
+  cursor: pointer;
+}

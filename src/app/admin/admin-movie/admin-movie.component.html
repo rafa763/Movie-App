@@ -1,0 +1,150 @@
+<div class="container py-3">
+  <h1 class="py-2" *ngIf="!update">Create a new movie</h1>
+  <h1 class="py-2" *ngIf="update">Update movie</h1>
+  <div class="alert alert-success" role="alert" *ngIf="visible">
+    Requset has been received
+  </div>
+  <form [formGroup]="MovieForm" (ngSubmit)="onSubmit()">
+    <div class="form-row mb-4 col-md-12 d-flex">
+      <div class="form-group col-md-5">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Title"
+          formControlName="title"
+        />
+      </div>
+      <div class="form-group mx-5 col-md-5">
+        <label for="original_title">Original title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="original_title"
+          placeholder="Original title"
+          formControlName="original_title"
+        />
+      </div>
+    </div>
+    <div class="form-group mb-4 col-md-10">
+      <label for="overview">Overview</label>
+      <input
+        type="text"
+        class="form-control"
+        id="overview"
+        placeholder="Movie Overview"
+        formControlName="overview"
+      />
+    </div>
+    <div class="form-row d-flex col-md-12 mb-4">
+      <div class="form-group col-md-5">
+        <label for="poster_path">Poster path</label>
+        <input
+          type="text"
+          class="form-control"
+          id="poster_path"
+          placeholder="poster link or path"
+          formControlName="poster_path"
+        />
+      </div>
+      <div class="form-group mx-5 col-md-5">
+        <label for="backdrop_path">Backdrop path</label>
+        <input
+          type="text"
+          class="form-control"
+          id="backdrop_path"
+          placeholder="backdrop path or link"
+          formControlName="backdrop_path"
+        />
+      </div>
+    </div>
+    <div class="form-row d-flex col-md-12 mb-4">
+      <div class="form-group col-md-3">
+        <label for="first_air_date">First air date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="first_air_date"
+          formControlName="first_air_date"
+        />
+      </div>
+      <div class="form-group mx-5 col-md-2">
+        <label for="adult">Adult</label>
+        <select id="adult" class="form-control" formControlName="adult">
+          <option selected disabled>Choose...</option>
+          <option>true</option>
+          <option [defaultSelected]="false">false</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="original_language">Original Language</label>
+        <input
+          type="text"
+          class="form-control"
+          id="original_language"
+          formControlName="original_language"
+        />
+      </div>
+      <div class="form-group ms-5 col-md-2">
+        <label for="video">Video</label>
+        <select id="video" class="form-control" formControlName="video">
+          <option selected disabled>Choose...</option>
+          <option>true</option>
+          <option [defaultSelected]="false">false</option>
+        </select>
+      </div>
+    </div>
+    <!--  -->
+    <div class="form-row d-flex col-md-12 mb-4">
+      <div class="form-group col-md-2">
+        <label for="type">Type</label>
+        <input
+          type="text"
+          class="form-control"
+          value="Internal"
+          disabled
+          id="type"
+        />
+      </div>
+      <div class="form-group mx-5 col-md-2">
+        <label for="vote_average">Vote average</label>
+        <input
+          type="text"
+          class="form-control"
+          value="0"
+          disabled
+          id="vote_average"
+        />
+      </div>
+      <div class="form-group mx-5 col-md-2">
+        <label for="vote_count">Vote Count</label>
+        <input
+          type="text"
+          class="form-control"
+          value="0"
+          disabled
+          id="vote_count"
+        />
+      </div>
+      <div class="form-group mx-5 col-md-2">
+        <label for="popularity">Popularity</label>
+        <input
+          type="text"
+          class="form-control"
+          value="0"
+          disabled
+          id="popularity"
+        />
+      </div>
+    </div>
+    <div class="d-flex justify-content-center my-5 col-md-11">
+      <button type="submit" class="btn btn-primary" *ngIf="!update">
+        Create Movie
+      </button>
+      <button type="submit" class="btn btn-primary" *ngIf="update">
+        Update Movie
+      </button>
+    </div>
+  </form>
+</div>

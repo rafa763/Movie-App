@@ -1,0 +1,6 @@
+<h1>Latest viewed movies</h1>
+<div class="row">
+  <div class="col-md-4" *ngFor="let movie of movies">
+    <app-movie [movies]="movie"></app-movie>
+  </div>
+</div>

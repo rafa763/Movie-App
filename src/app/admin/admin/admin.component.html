@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5 text-center">
+      <div class="my-2">
+        <h1>Admin Panel</h1>
+      </div>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a routerLink="./movie">Create a movie</a>
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <form [formGroup]="movieForm" (ngSubmit)="goUpdate()">
+            <a>Update a movie/</a>
+            <input
+              class="form-control-sm mx-2"
+              type="text"
+              formControlName="movieId"
+            />
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="movieForm.invalid"
+            >
+              Go
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { ErrorType } from './error.type';
+// import { ErrorType } from './error.type';
 import { Movie } from './movie.type';
 
 // export interface showType extends ErrorType {

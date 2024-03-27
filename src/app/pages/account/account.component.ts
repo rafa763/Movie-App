@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../http/account.service';
 // import { mapAccountInfo } from '../../maps/account.map';
 import { AccountResponseType } from '../../types/account.type';
-import { ErrorType } from '../../types/error.type';
+// import { ErrorType } from '../../types/error.type';
 
 @Component({
   selector: 'app-account',
@@ -11,14 +11,14 @@ import { ErrorType } from '../../types/error.type';
   styleUrl: './account.component.css',
 })
 export class AccountComponent implements OnInit {
-  accountDetails!: AccountResponseType;
+  accountDetails!: any;
   message!: string;
 
   constructor(private accountService: AccountService) {}
 
   ngOnInit() {
     this.accountService.getAccount().subscribe(
-      (res: AccountResponseType) => {
+      (res) => {
         this.accountDetails = res;
       },
       (err) => {

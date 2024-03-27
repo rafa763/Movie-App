@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { WatchlistService } from '../../http/watchlist.service';
 import { Movie } from '../../types/movie.type';
+import { Router } from '@angular/router';
+import { ViewsService } from '../../http/views.service';
 
 @Component({
   selector: 'app-movie',
@@ -8,24 +10,16 @@ import { Movie } from '../../types/movie.type';
   styleUrl: './movie.component.css',
 })
 export class MovieComponent {
-  @Input() movies!: Movie;
-  @Input() type!: string;
+  @Input() movies!: any;
 
-  @Output() watchlistUpdated = new EventEmitter<void>();
+  constructor(private router: Router, private viewsService: ViewsService) {}
 
-  constructor(private watchlistService: WatchlistService) {}
+  openFull(id: number) {
+    console.log('open', id);
+    this.router.navigate(['/movie', id]);
 
-  addToWatchlist(id: number) {
-    this.watchlistService.addToWatchlist(id).subscribe((_) => {
-      console.log('added', id);
-      this.watchlistUpdated.emit();
-    });
-  }
-
-  removeFromWatchlist(id: number) {
-    console.log('remove', id);
-    this.watchlistService.removeFromWatchlist(id).subscribe((_) => {
-      this.watchlistUpdated.emit();
+    this.viewsService.addView(id).subscribe((res) => {
+      console.log('h movie id' + id);
     });
   }
 }

@@ -21,25 +21,18 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (state.url === '/auth') {
-      const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
-      if (token && localStorage.getItem('id')) {
-        this.authenticateService.authenticate(token).subscribe((res: any) => {
-          if (res.error) {
-            return false;
-          }
-          this.router.navigate(['/']);
-          return true;
-        });
-      } else {
-        return true;
-      }
-    }
-    if (!(localStorage.getItem('token') && localStorage.getItem('id'))) {
-      this.router.navigate(['/auth']);
+    if (!token) {
+      // If there is no access_token in the local storage, redirect to the login page
+      this.router.navigate(['/login']);
+      return false;
+    } else if (state.url === '/login' || state.url === '/signup') {
+      // If the user visits the login page and they have an access_token, redirect to the home page
+      this.router.navigate(['/']);
       return false;
     }
+
     return true;
   }
 }

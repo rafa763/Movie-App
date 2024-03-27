@@ -5,19 +5,21 @@
   role="alert"
   *ngIf="message"
 >
-  {{ message.status_message }}
+  {{ message }}
 </div>
 <div class="row">
   <div class="col-md-4" *ngFor="let movie of movies">
-    <app-movie
-      [movies]="movie"
-      [type]="'movie'"
-      (watchlistUpdated)="onWatchlistUpdated()"
-    ></app-movie>
+    <app-movie [movies]="movie"></app-movie>
   </div>
   <div class="row text-center my-5 d-flex justify-content-center">
     <div class="col-md-1">
-      <button class="btn btn-primary btn-sm" (click)="fetchMore()">prev</button>
+      <button
+        class="btn btn-primary btn-sm"
+        [disabled]="page <= 1"
+        (click)="prevPage()"
+      >
+        prev
+      </button>
     </div>
     <div class="col-sm-1">
       <input
@@ -28,7 +30,13 @@
       />
     </div>
     <div class="col-md-1">
-      <button class="btn btn-primary btn-sm" (click)="fetchMore()">next</button>
+      <button
+        class="btn btn-primary btn-sm"
+        (click)="nextPage()"
+        (input)="updatePageSize()"
+      >
+        next
+      </button>
     </div>
   </div>
 </div>

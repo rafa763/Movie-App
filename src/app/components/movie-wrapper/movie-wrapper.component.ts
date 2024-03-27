@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TrendingService } from '../../http/trending.service';
+import { MovieService } from '../../http/movie.service';
 
 import { Movie } from '../../types/movie.type';
 import { TrendingResponseType } from '../../types/trending.type';
-import { ErrorType } from '../../types/error.type';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-wrapper',
@@ -11,42 +11,59 @@ import { ErrorType } from '../../types/error.type';
   styleUrl: './movie-wrapper.component.css',
 })
 export class MovieWrapperComponent implements OnInit {
-  idx = 1;
-  pageSize: number = 20;
+  page: number = +this.route.snapshot.queryParams['page'] || 1;
+  pageSize: number = +this.route.snapshot.queryParams['size'] || 20;
   movies: Movie[] = [];
-  message!: ErrorType;
-  @Output() watchlistUpdated = new EventEmitter<void>();
+  message!: string;
 
-  constructor(private trendingService: TrendingService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private movieService: MovieService
+  ) {}
 
   ngOnInit() {
-    this.getTrending();
+    this.getTrending(this.page, this.pageSize);
   }
 
-  // get the pagesize variable from the input field in the html
-
-  getTrending(id?: number, pageSize: number = this.pageSize) {
-    console.log('from ts', pageSize);
-
-    this.trendingService.getTrending(id, pageSize).subscribe(
-      (res: any) => {
+  getTrending(page: number, pageSize: number) {
+    this.movieService.getTrending(page, pageSize).subscribe(
+      (res: Movie[]) => {
+        console.log('res ts', res);
         let fetched: Movie[] = res;
         this.movies = [...fetched];
       },
       (err) => {
         if (err.error) {
-          this.message = err.error;
+          this.message = err.message;
         }
       }
     );
   }
 
-  onWatchlistUpdated() {
-    this.watchlistUpdated.emit();
+  prevPage() {
+    this.page -= 1;
+    if (this.page >= 1) {
+      this.router.navigate(['/'], {
+        queryParams: { page: this.page, size: this.pageSize },
+      });
+      this.getTrending(this.page, this.pageSize);
+    }
   }
 
-  fetchMore() {
-    this.idx += 1;
-    this.getTrending(this.idx);
+  nextPage() {
+    this.page += 1;
+    this.router.navigate(['/'], {
+      queryParams: { page: this.page, size: this.pageSize },
+    });
+    this.getTrending(this.page, this.pageSize);
+  }
+
+  updatePageSize(): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { size: this.pageSize },
+      queryParamsHandling: 'merge', // Merge with existing query parameters
+    });
   }
 }

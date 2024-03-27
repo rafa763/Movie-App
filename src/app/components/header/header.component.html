@@ -14,10 +14,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" routerLinkActive="active" routerLink="/account"
+        <a
+          class="nav-link"
+          *ngIf="loggedIn"
+          routerLinkActive="active"
+          routerLink="/account"
           >My Account</a
         >
-        <a class="nav-link" (click)="logout()" routerLink="/">Logout</a>
+        <a class="nav-link" *ngIf="admin && loggedIn" routerLink="/admin"
+          >Admin</a
+        >
+        <a class="nav-link" *ngIf="loggedIn" routerLink="/views">My Views</a>
+        <a
+          class="nav-link"
+          *ngIf="loggedIn"
+          (click)="logout()"
+          routerLink="/logout"
+          >Logout</a
+        >
       </div>
     </div>
   </div>
