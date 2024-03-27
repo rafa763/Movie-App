@@ -28,9 +28,9 @@ export class SignupComponent implements OnInit {
         password: new FormControl(null, Validators.required),
         confirmPassword: new FormControl(null, Validators.required),
         dob: new FormControl(null, Validators.required),
-        // recaptcha: new FormControl(null, Validators.required),
-      }
-      // { validators: this.passwordMatchValidator as ValidatorFn }
+        recaptcha: new FormControl(null, Validators.required),
+      },
+      { validators: this.passwordMatchValidator as ValidatorFn }
     );
   }
 
